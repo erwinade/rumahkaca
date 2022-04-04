@@ -1,6 +1,13 @@
 <?php
     $activePage = basename($_SERVER['PHP_SELF'], ".php");
     include 'conn.php';
+
+    $rumahkacalist = [
+        'index',
+        'infoPlants',
+        'sensor',
+        'kontrol'
+    ];
 ?>
 
 <!DOCTYPE html>
@@ -49,42 +56,23 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item <?php if($activePage == 'index'){ echo "active";} ?>">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item <?php if($activePage == 'infoPlants'){ echo "active";} ?>">
-                <a class="nav-link" href="infoPlants.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Informasi Tanaman</span></a>
-            </li>
-
-            <!-- Nav Item - Sensors -->
-            <li class="nav-item <?php if($activePage == 'sensor'){ echo "active";} ?>">
-                <a class="nav-link" href="sensor.php">
-                    <i class="fas fa-bezier-curve"></i>
-                    <span>Sensors</span></a>
+            <li class="nav-item <?php if(in_array($activePage,$rumahkacalist)){ echo "active";} ?>">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Rumah Kaca</span>
+                </a>
+                <div id="collapsePages" class="collapse <?php if(in_array($activePage,$rumahkacalist)){ echo "show";} ?>"" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item <?php if($activePage == 'index'){ echo "active";} ?>" href="index.php">Dashboard</a>
+                        <a class="collapse-item <?php if($activePage == 'infoPlants'){ echo "active";} ?>" href="infoPlants.php">Informasi Tanaman</a>
+                        <a class="collapse-item <?php if($activePage == 'sensor'){ echo "active";} ?>" href="sensor.php">Sensors</a>
+                        <a class="collapse-item <?php if($activePage == 'kontrol'){ echo "active";} ?>" href="kontrol.php">Kontrol</a>
+                    </div>
+                </div>
             </li>
 
-            <!-- Nav Item - Sensors -->
-            <li class="nav-item <?php if($activePage == 'kontrol'){ echo "active";} ?>">
-                <a class="nav-link" href="kontrol.php">
-                    <i class="fa-solid fa-desktop"></i>
-                    <span>Kontrol</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-
+           
         </ul>
         <!-- End of Sidebar -->
 
