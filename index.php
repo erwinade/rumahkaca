@@ -253,21 +253,35 @@ foreach ($hums as $hum) {
                 <div class="card-body">
                     <div class="row align-items-center">
                         <!-- Informasi Status Pintu -->
+                        <?php
+                    $doors = query("SELECT * FROM sensors WHERE type = 'pintu' ");
+                    foreach($doors as $door):
+                        if($door['value'] == 1) {
+                            $status_pintu = "Terbuka";
+                            $image_pintu  = 'bdoor_open.gif';
+                        }
+                        if($door['value'] == 0) {
+                            $status_pintu = "Tertutup";
+                            $image_pintu  = 'bdoor_close.png';
+                        }
+                    ?>
                         <div class="col-xl-12 col-md-8">
                             <div id="card" class="card card-info m-0 border-primary" style="border: 1px solid;border-radius: 3px;">
                                 <div class="card-header" style="background-color:#d9edf7;#bce8f1;color:#31708f; border:-1px!important; ">
                                     <div class="row">
                                         <div class="col-12 text-right">
-                                                <span style="font-size:15px;font-weight:400">Status Pintu (Terbuka)</span>
+                                                <span style="font-size:15px;font-weight:400">Status Pintu (<?= $status_pintu ?>)</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body text-center">
-                                    <img src="img/bdoor_open.gif" alt="center" alt="" width="80" height="125"> 
+                                    <img src="img/<?= $image_pintu ?>" alt="center" alt="" width="80" height="125"> 
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
                         </div> 
+                    <?php endforeach; ?>
+
                     </div>
                 </div>
             </div>
