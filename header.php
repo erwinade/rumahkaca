@@ -57,7 +57,7 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item <?php if(in_array($activePage,$rumahkacalist)){ echo "active";} ?>">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                <a class="nav-link <?php if(!in_array($activePage,$rumahkacalist)){ echo "collapsed";} ?>" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Rumah Kaca</span>
